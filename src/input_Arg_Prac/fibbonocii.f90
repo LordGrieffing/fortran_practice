@@ -1,5 +1,5 @@
 recursive function fibbonocii(n) result (fibnum)
-    integer :: n, fibnum
+    integer(kind = 8) :: n, fibnum
 
     if(n == 0) then
         fibnum = 0
@@ -13,7 +13,7 @@ end function fibbonocii
 subroutine check_arg(n, arg_test)
 
     logical, intent(inout) :: arg_test
-    integer, intent(inout) :: n
+    integer(kind = 8), intent(inout) :: n
     integer :: ios
 
     if ((ios /= 0) .or. (n < 0) ) then
@@ -29,7 +29,7 @@ program Main
 
     ! Declare variables
     logical :: arg_test
-    integer :: n, finalfib, fibbonocii
+    integer(kind=8) :: n, finalfib, fibbonocii
     integer :: num_args, i, ios
     character(len=12), dimension(:), allocatable :: args
 
