@@ -34,4 +34,17 @@ subroutine bubble(list)
     end do
 end subroutine bubble
 
+subroutine countSort(list)
+
+    ! Declare Variables
+    integer, intent(inout) :: list(:)
+    integer :: maxNum
+    integer, allocatable :: tallyarray(:)
+
+    
+
+
+
+end subroutine countSort
+
 end module intSort
