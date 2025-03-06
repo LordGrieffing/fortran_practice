@@ -38,10 +38,43 @@ subroutine countSort(list)
 
     ! Declare Variables
     integer, intent(inout) :: list(:)
-    integer :: maxNum
-    integer, allocatable :: tallyarray(:)
+    integer :: maxNum, position 
+    integer, allocatable :: tallyarray(:), reverselist(:), sortedlist(:)
 
-    
+    ! Construct tally array
+    allocate(tallyarray(maxNum + 1))
+    tallyarray = 0
+
+    do i = 1, size(list)
+        tallyarray(list(i)) = tallyarray(list(i)) + 1
+
+    end do
+
+    ! Sum the occurances
+    do i = 2, size(tallyarray)
+        tallyarray(i) = tallyarray(i-1)
+
+    end do
+
+    ! Reverse the Array
+    allocate(reverselist(size(list)))
+    do i = 1, size(list)
+        reverselist(i) = list(size(list)-i + 1)
+
+    end do 
+
+    ! Place elements into their correct positions in the sorted array
+    allocate(sortedlist(size(list)))
+    do i = 1, size(list)
+        position = tallyarray(reverselist(i)) - 1
+        sortedlist(position) = list(i)
+        tallyarray(list(i)) = tallyarray(list(i)) - 1
+
+
+    end do
+
+    list = sortedlist
+
 
 
 

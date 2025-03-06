@@ -42,7 +42,7 @@ program sortInterface
         call check_input(numbers(i))
     end do
 
-    call bubble(numbers(:))
+    call countSort(numbers(:))
 
     print *, "The Sorted Input"
     print *, numbers(:)
