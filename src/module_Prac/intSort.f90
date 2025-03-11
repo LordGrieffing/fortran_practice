@@ -41,34 +41,39 @@ subroutine countSort(list)
     integer :: maxNum, position 
     integer, allocatable :: tallyarray(:), reverselist(:), sortedlist(:)
 
-    ! Construct tally array
+    ! Get maxNum 
+    maxNum = maxval(list)
+
+    ! Construct arrays
     allocate(tallyarray(maxNum + 1))
+    allocate(reverselist(size(list)))
+    allocate(sortedlist(size(list)))
     tallyarray = 0
 
+
     do i = 1, size(list)
-        tallyarray(list(i)) = tallyarray(list(i)) + 1
+        tallyarray(list(i)+1) = tallyarray(list(i)+1) + 1
 
     end do
 
+
     ! Sum the occurances
     do i = 2, size(tallyarray)
-        tallyarray(i) = tallyarray(i-1)
+        tallyarray(i) = tallyarray(i-1) + tallyarray(i)
 
     end do
 
     ! Reverse the Array
-    allocate(reverselist(size(list)))
     do i = 1, size(list)
         reverselist(i) = list(size(list)-i + 1)
 
     end do 
 
     ! Place elements into their correct positions in the sorted array
-    allocate(sortedlist(size(list)))
     do i = 1, size(list)
-        position = tallyarray(reverselist(i)) - 1
-        sortedlist(position) = list(i)
-        tallyarray(list(i)) = tallyarray(list(i)) - 1
+        position = tallyarray(reverselist(i)) + 1
+        sortedlist(position) = reverselist(i)
+        tallyarray(reverselist(i)) = tallyarray(reverselist(i)) - 1
 
 
     end do
