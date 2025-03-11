@@ -2,7 +2,7 @@ module intSort
     implicit none
 
     private
-    public bubble
+    public bubble, countSort
 
     integer :: length
     integer :: i
