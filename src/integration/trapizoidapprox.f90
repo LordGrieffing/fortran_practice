@@ -17,17 +17,22 @@ subroutine trapIntegrate(n, a, b, estimate)
     integer :: i
 
     ! Calculate delta x
-    dx = (a + b) / n
+    dx = (b - a) / n
 
     
     !For loop sum
-    do i = 1, n
-        if ((i == 1) .or. (i == n)) then
-            estimate = estimate + f(a + (i * dx))
+    do i = 0, n
+        if (i == 0) then
+            estimate = estimate + f(a)
+        else if (i == n) then
+            estimate = estimate + f(b)
         else
             estimate = estimate + 2 * f(a + (i* dx))
         end if
     end do
+
+    !multiple estimate by deltaX / 2
+    estimate = estimate * (dx / 2)
 
 end subroutine trapIntegrate
 
